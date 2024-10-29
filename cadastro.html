@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-80 border-4 border-green-500">
+        <h2 class="text-center text-2xl font-bold text-gray-700 mb-4">Criar Conta</h2>
+        <p class="text-center text-gray-600 mb-4">Preencha o formulário abaixo para criar sua conta.</p>
+        <form onsubmit="cadastrarUsuario(event)">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nome">Nome Completo</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nome" type="text" placeholder="Digite seu nome completo">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Digite seu email">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="senha">Senha</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="senha" type="password" placeholder="Digite sua senha">
+            </div>
+            
+            <!-- Mensagem de erro ou sucesso -->
+            <div id="mensagem" class="text-center text-sm mb-4" style="display: none;"></div>
+
+            <div class="flex items-center justify-center mb-4">
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Cadastrar
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <a href="index.html" class="text-sm text-blue-500 hover:text-blue-700">Voltar ao login</a>
+        </div>
+    </div>
+
+    <script>
+        function cadastrarUsuario(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var senha = document.getElementById("senha").value;
+            var mensagem = document.getElementById("mensagem");
+
+            if (nome === "" || email === "" || senha === "") {
+                mensagem.textContent = "Todos os campos são obrigatórios!";
+                mensagem.style.display = "block";
+                mensagem.classList.add("text-red-500");
+            } else {
+                mensagem.textContent = "Cadastro realizado com sucesso!";
+                mensagem.style.display = "block";
+                mensagem.classList.remove("text-red-500");
+                mensagem.classList.add("text-green-500");
+
+                // Simulação de cadastro - Aqui você pode adicionar lógica para enviar a requisição ao backend.
+                setTimeout(function() {
+                    window.location.href = "index.html"; // Redireciona para a página de login após o cadastro
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

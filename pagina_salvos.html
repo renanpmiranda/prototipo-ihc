@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notícias Salvas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+  <div class="bg-white rounded-lg shadow-lg w-80 min-h-[75vh] flex flex-col">
+    <!-- Header -->
+    <header class="flex items-center justify-between p-4 bg-gray-300 rounded-t-lg">
+      <a href="minha_conta.html" class="text-xl">
+        <i class="fas fa-user"></i>
+      </a>
+      <button onclick="fecharPagina()" class="text-xl">
+        <i class="fas fa-times"></i>
+      </button>
+    </header>
+
+    <!-- Results Count -->
+    <div class="px-4 py-2">
+      <p id="results-count" class="text-gray-600 text-center">0 notícias salvas</p>
+    </div>
+
+    <!-- Saved News List -->
+    <div id="saved-news-list" class="px-4 py-2 space-y-4 max-h-80 overflow-y-auto flex-grow">
+      <!-- As notícias serão carregadas dinamicamente aqui -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="p-4 bg-gray-300 rounded-b-lg text-center">
+      <button style="background-color: #151B4D;" class="text-white px-4 py-2 rounded-lg" onclick="window.location.href='feed.html'">Voltar ao Feed</button>
+    </footer>
+  </div>
+
+  <script>
+    const noticiasExemplo = [
+      {
+        titulo: "Furacões mais frequentes são resultado direto de mudanças climáticas?",
+        imagem: "https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg",
+        descricao: "Uma publicação está circulando afirmando que o aumento na frequência de furacões é resultado direto das mudanças climáticas. Este estudo, no entanto, mostra que há outros fatores em jogo."
+      },
+      {
+        titulo: "Estudo revela aumento de fake news sobre desmatamento na Amazônia",
+        imagem: "https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg",
+        descricao: "Um novo estudo revela um aumento alarmante na disseminação de fake news relacionadas ao desmatamento na Amazônia, destacando a necessidade de fontes de informação confiáveis."
+      }
+    ];
+
+    // Função para fechar a página
+    function fecharPagina() {
+      window.location.href = "minha_conta.html"; // Redireciona para a página de "Minha Conta"
+    }
+
+    // Função para remover notícia
+    function removerNoticia(element) {
+      const noticiaIndex = element.closest('.noticia').dataset.index;
+      let noticias = JSON.parse(localStorage.getItem('noticiasSalvas')) || [];
+      noticias.splice(noticiaIndex, 1); // Remove a notícia do array
+      localStorage.setItem('noticiasSalvas', JSON.stringify(noticias));
+      carregarNoticias(); // Atualiza a lista
+    }
+
+    // Função para atualizar a contagem de notícias salvas
+    function atualizarContagem() {
+      const noticiasSalvas = document.querySelectorAll('.noticia').length;
+      document.getElementById('results-count').innerText = `${noticiasSalvas} notícias salvas`;
+    }
+
+    // Função para carregar notícias salvas
+    function carregarNoticias() {
+      const savedNewsList = document.getElementById('saved-news-list');
+      savedNewsList.innerHTML = ''; // Limpa a lista de notícias
+
+      let noticias = JSON.parse(localStorage.getItem('noticiasSalvas')) || noticiasExemplo; // Carrega notícias do LocalStorage ou exemplo
+      localStorage.setItem('noticiasSalvas', JSON.stringify(noticias)); // Garante que as notícias de exemplo sejam salvas
+
+      noticias.forEach((noticia, index) => {
+        const noticiaHTML = `
+          <div class="noticia bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow duration-200" data-index="${index}">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-semibold text-gray-800">${noticia.titulo}</h2>
+              <button class="text-gray-400" onclick="removerNoticia(this)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+            <img class="my-2 w-full h-32 object-cover rounded-lg" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" alt="${noticia.titulo}"/>
+            <p class="text-gray-600 text-sm">${noticia.descricao}</p>
+          </div>
+        `;
+        savedNewsList.innerHTML += noticiaHTML;
+      });
+
+      atualizarContagem(); // Atualiza a contagem de notícias
+    }
+
+    // Carrega as notícias ao abrir a página
+    window.onload = carregarNoticias;
+  </script>
+</body>
+</html>

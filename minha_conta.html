@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="bg-white w-80 rounded-lg shadow-lg p-6">
+        <div class="flex justify-end">
+            <i class="fas fa-times text-xl cursor-pointer" onclick="fecharPagina()"></i>
+        </div>
+        <div class="flex flex-col items-center mt-4">
+            <div class="bg-gray-300 rounded-full w-24 h-24 flex items-center justify-center">
+                <i class="fas fa-user text-4xl text-gray-600"></i>
+            </div>
+            <h2 class="mt-4 text-xl font-bold">Nome do Usuário</h2>
+            <!-- Mockado: exibir email do usuário cadastrado -->
+            <p id="email-usuario" class="text-gray-600"><i class="fas fa-envelope"></i> email@email.com</p>
+        </div>
+        <div class="mt-6">
+            <h3 class="text-lg font-bold text-gray-700">Redes Sociais Vinculadas</h3>
+            <div id="redes-sociais" class="mt-4">
+                <!-- Dados Mockados: redes sociais vinculadas -->
+                <div class="flex items-center border-t border-gray-300 py-3">
+                    <i class="fab fa-twitter text-xl text-blue-500"></i>
+                    <span class="ml-4 text-lg text-gray-700">Twitter (@usuario_twitter)</span>
+                </div>
+                <div class="flex items-center border-t border-gray-300 py-3">
+                    <i class="fab fa-facebook text-xl text-blue-700"></i>
+                    <span class="ml-4 text-lg text-gray-700">Facebook (@usuario_facebook)</span>
+                </div>
+                <div class="flex items-center border-t border-gray-300 py-3">
+                    <i class="fab fa-linkedin text-xl text-blue-800"></i>
+                    <span class="ml-4 text-lg text-gray-700">LinkedIn (@usuario_linkedin)</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center border-t border-gray-300 py-3 mt-6">
+            <i class="fas fa-cog text-xl text-black"></i>
+            <a class="ml-4 text-lg text-black" href = "config.html">Configurações</a>
+        </div>
+    </div>
+
+    <script>
+        function fecharPagina() {
+            window.location.href = "home.html"; // Redireciona de volta para a página principal (login)
+        }
+
+        // Simulação de dados mockados
+        const dadosMockados = {
+            nome: "Nome do Usuário",
+            email: "email@email.com",
+            redesSociais: [
+                { nome: "Twitter", username: "@usuario_twitter", icone: "fab fa-twitter", cor: "text-blue-500" },
+                { nome: "Facebook", username: "@usuario_facebook", icone: "fab fa-facebook", cor: "text-blue-700" },
+                { nome: "LinkedIn", username: "@usuario_linkedin", icone: "fab fa-linkedin", cor: "text-blue-800" }
+            ]
+        };
+
+        // Função para exibir dados mockados
+        function carregarDadosUsuario() {
+            document.querySelector("h2").textContent = dadosMockados.nome;
+            document.getElementById("email-usuario").textContent = dadosMockados.email;
+
+            // Renderizar as redes sociais
+            const redesSociaisDiv = document.getElementById("redes-sociais");
+            redesSociaisDiv.innerHTML = "";
+            dadosMockados.redesSociais.forEach(rede => {
+                const redeHTML = `
+                    <div class="flex items-center border-t border-gray-300 py-3">
+                        <i class="${rede.icone} text-xl ${rede.cor}"></i>
+                        <span class="ml-4 text-lg text-gray-700">${rede.nome} (${rede.username})</span>
+                    </div>
+                `;
+                redesSociaisDiv.innerHTML += redeHTML;
+            });
+        }
+
+        // Carregar dados mockados ao carregar a página
+        window.onload = carregarDadosUsuario;
+    </script>
+</body>
+</html>

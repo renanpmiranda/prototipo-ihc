@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-80">
+        <div class="flex justify-end">
+            <i class="fas fa-times text-xl cursor-pointer" onclick="fecharPagina()"></i>
+        </div>
+        <div class="flex flex-col items-center mt-4">
+            <div class="bg-gray-300 rounded-full w-24 h-24 flex items-center justify-center">
+                <i class="fas fa-user text-4xl text-gray-600"></i>
+            </div>
+            <h2 class="mt-4 text-xl font-bold">Nome do Usuário</h2>
+            <p class="text-gray-600"><i class="fas fa-map-marker-alt"></i> Localização</p>
+        </div>
+        <div class="mt-6">
+            <div class="flex items-center border-t border-gray-300 py-3">
+                <i class="fas fa-user text-xl text-black"></i>
+                <a class="ml-4 text-lg text-black" href="minha_conta.html">Minha Conta</a>
+            </div>
+            <div class="flex items-center border-t border-gray-300 py-3">
+                <i class="fas fa-bell text-xl text-black"></i>
+                <a class="ml-4 text-lg text-black" href="alert.html">Notificações</a>
+            </div>
+            <div class="flex items-center border-t border-gray-300 py-3">
+                <i class="fas fa-globe text-xl text-black"></i>
+                <a class="ml-4 text-lg text-black" href="feed.html">Notícias</a>
+            </div>
+            <div class="flex items-center border-t border-gray-300 py-3">
+                <i class="fas fa-heart text-xl text-black"></i>
+                <a class="ml-4 text-lg text-black" href="pagina_salvos.html">Salvos</a>
+            </div>
+        </div>
+        <div class="flex items-center border-t border-gray-300 py-3 mt-6">
+            <i class="fas fa-cog text-xl text-black"></i>
+            <a class="ml-4 text-lg text-black" href="config.html">Configurações</a>
+        </div>
+    </div>
+
+    <script>
+        function fecharPagina() {
+            window.location.href = "index.html"; // Redireciona de volta para a página principal (login)
+        }
+    </script>
+</body>
+</html>

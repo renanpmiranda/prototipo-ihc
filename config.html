@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white w-80 rounded-lg shadow-lg p-6 max-h-[80vh] overflow-y-auto">
+        <div class="flex justify-end">
+            <i class="fas fa-times text-xl cursor-pointer" onclick="fecharPagina()"></i>
+        </div>
+        <div class="flex flex-col items-center mt-4">
+            <h2 class="text-xl font-bold text-gray-700">Configurações</h2>
+        </div>
+
+        <!-- Seção de notificações -->
+        <div class="mt-6">
+            <h3 class="text-lg font-bold text-gray-700">Notificações</h3>
+            <label class="flex items-center mt-2">
+                <input type="checkbox" id="notifications" class="mr-2">
+                <span class="text-gray-600">Receber notificações sobre novos relatórios de desinformação</span>
+            </label>
+            <label class="flex items-center mt-2">
+                <input type="checkbox" id="email-updates" class="mr-2">
+                <span class="text-gray-600">Receber atualizações por e-mail</span>
+            </label>
+        </div>
+
+        <!-- Seção de verificação de dados -->
+        <div class="mt-6">
+            <h3 class="text-lg font-bold text-gray-700">Verificação de Dados</h3>
+            <label class="flex items-center mt-2">
+                <input type="checkbox" id="auto-verification" class="mr-2">
+                <span class="text-gray-600">Ativar verificação automática de informações</span>
+            </label>
+            <label for="update-frequency" class="block text-gray-600 mt-2">Frequência de atualização:</label>
+            <select id="update-frequency" class="mt-2 w-full p-2 border border-gray-300 rounded-lg">
+                <option value="1h">A cada 1 hora</option>
+                <option value="12h">A cada 12 horas</option>
+                <option value="24h">A cada 24 horas</option>
+            </select>
+        </div>
+
+        <!-- Seção de temas -->
+        <div class="mt-6">
+            <h3 class="text-lg font-bold text-gray-700">Tema do Aplicativo</h3>
+            <label for="theme" class="block text-gray-600 mt-2">Selecione o tema do aplicativo:</label>
+            <select id="theme" class="mt-2 w-full p-2 border border-gray-300 rounded-lg">
+                <option value="light">Claro</option>
+                <option value="dark">Escuro</option>
+            </select>
+        </div>
+
+        <!-- Botão de salvar -->
+        <div class="flex justify-center mt-6">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="saveSettings()">Salvar Configurações</button>
+        </div>
+    </div>
+
+    <script>
+        // Função para fechar a página
+        function fecharPagina() {
+            window.location.href = "home.html"; // Redireciona para a página principal
+        }
+
+        // Função para salvar configurações no localStorage
+        function saveSettings() {
+            const language = document.getElementById('language').value;
+            const notifications = document.getElementById('notifications').checked;
+            const emailUpdates = document.getElementById('email-updates').checked;
+            const autoVerification = document.getElementById('auto-verification').checked;
+            const updateFrequency = document.getElementById('update-frequency').value;
+            const theme = document.getElementById('theme').value;
+
+            const settings = {
+                language,
+                notifications,
+                emailUpdates,
+                autoVerification,
+                updateFrequency,
+                theme
+            };
+
+            localStorage.setItem('userSettings', JSON.stringify(settings));
+            alert('Configurações salvas com sucesso!');
+            window.location.href = "home.html";
+        }
+
+        // Função para carregar configurações do localStorage
+        function loadSettings() {
+            const savedSettings = localStorage.getItem('userSettings');
+
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+
+                document.getElementById('language').value = settings.language;
+                document.getElementById('notifications').checked = settings.notifications;
+                document.getElementById('email-updates').checked = settings.emailUpdates;
+                document.getElementById('auto-verification').checked = settings.autoVerification;
+                document.getElementById('update-frequency').value = settings.updateFrequency;
+                document.getElementById('theme').value = settings.theme;
+            }
+        }
+
+        // Carregar as configurações ao abrir a página
+        window.onload = loadSettings;
+    </script>
+</body>
+</html>

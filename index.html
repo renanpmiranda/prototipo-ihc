@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        function validarLogin(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário ou redirecionamento do link
+
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var mensagemErro = document.getElementById("mensagem-erro");
+
+            if (email === "" || password === "") {
+                mensagemErro.textContent = "Login e/ou senha inválidos! Por favor, tente novamente.";
+                mensagemErro.style.display = "block"; // Exibe a mensagem de erro
+            } else {
+                mensagemErro.style.display = "none"; // Oculta a mensagem de erro
+                window.location.href = "feed.html"; // Simula o login redirecionando para outra página
+            }
+        }
+
+        function abrirModal(redeSocial) {
+            var modal = document.getElementById("modal");
+            var mensagemModal = document.getElementById("mensagem-modal");
+            var redeSocialInput = document.getElementById("rede-social");
+            mensagemModal.textContent = "Insira suas credenciais do " + redeSocial + " para continuar.";
+            redeSocialInput.value = redeSocial;
+            modal.style.display = "block";
+        }
+
+        function fecharModal() {
+            var modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+
+        function validarLoginRedeSocial(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário de login da rede social
+
+            var usuario = document.getElementById("usuario-rede").value;
+            var senha = document.getElementById("senha-rede").value;
+            var mensagemErroRede = document.getElementById("mensagem-erro-rede");
+
+            if (usuario === "" || senha === "") {
+                mensagemErroRede.textContent = "Usuário ou senha inválidos! Por favor, tente novamente.";
+                mensagemErroRede.style.display = "block"; // Exibe a mensagem de erro
+            } else {
+                mensagemErroRede.style.display = "none"; // Oculta a mensagem de erro
+                window.location.href = "home.html"; // Simula o login redirecionando para a página home
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-80">
+        <div class="flex flex-col items-center mb-6">
+            <!-- Adicionando a imagem como logo -->
+            <img src="assets/mundo.jpg" alt="Logo" class="h-32 w-32 object-cover rounded-full"> <!-- Ajuste o tamanho aqui -->
+            <!-- Nome da aplicação -->
+            <h2 class="text-lg font-bold mt-2">EcoCheck</h2>
+        </div>
+        <form onsubmit="validarLogin(event)">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="name@example.com">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Senha</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+            </div>
+
+            <!-- Mensagem de erro que aparecerá quando os campos estiverem vazios -->
+            <div id="mensagem-erro" class="text-red-500 text-sm mb-4" style="display: none;"></div>
+
+            <div class="flex items-center justify-center mb-4">
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Entrar
+                </button>
+            </div>
+            <div class="text-center text-gray-500 mb-4">ou utilize uma rede social</div>
+            <div class="flex justify-between mb-4">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="abrirModal('Twitter')">
+                    Twitter
+                </button>
+                <button class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="abrirModal('Facebook')">
+                    Facebook
+                </button>
+            </div>
+            <div class="flex justify-between text-sm">
+                <a class="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800" href="recuperacao_senha.html">
+                    Esqueceu sua senha?
+                </a>
+                <a class="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800" href="cadastro.html">
+                    Cadastrar-se
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal de login via redes sociais -->
+    <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden" style="display: none;">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-8 rounded-lg shadow-lg w-80 border-4 border-blue-500">
+                <p id="mensagem-modal" class="text-gray-700 text-center mb-4"></p>
+
+                <form onsubmit="validarLoginRedeSocial(event)">
+                    <input type="hidden" id="rede-social" value="">
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="usuario-rede">Usuário</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="usuario-rede" type="text" placeholder="Digite seu usuário">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="senha-rede">Senha</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="senha-rede" type="password" placeholder="Digite sua senha">
+                    </div>
+
+                    <!-- Mensagem de erro -->
+                    <div id="mensagem-erro-rede" class="text-red-500 text-sm mb-4" style="display: none;"></div>
+
+                    <div class="flex items-center justify-center mb-4">
+                        <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Entrar
+                        </button>
+                    </div>
+                </form>
+
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline" onclick="fecharModal()">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

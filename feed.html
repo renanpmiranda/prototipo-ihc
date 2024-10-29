@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Resultados de Pesquisa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
+  <div class="bg-white p-4 rounded-lg shadow-lg w-80">
+    <!-- Header -->
+    <div class="flex items-center justify-between p-4 bg-gray-200 rounded-t-lg">
+      <a class="fas fa-user text-xl" href="minha_conta.html"></a>
+      <i class="fas fa-times text-xl cursor-pointer" onclick="fecharPagina()"></i>
+    </div>
+    <!-- Search Bar -->
+    <div class="p-4">
+      <div class="relative">
+        <input id="search-input" oninput="filtrarNoticias()" class="w-full p-4 pl-10 border rounded-full" placeholder="Pesquisar notícias..." type="text"/>
+        <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
+      </div>
+    </div>
+    <!-- Results Count -->
+    <div class="px-4 py-2">
+      <p id="results-count" class="text-gray-600">6 resultados encontrados</p>
+    </div>
+    <!-- Results List (com rolagem) -->
+    <div id="results-list" class="px-4 py-2 space-y-4 overflow-y-auto h-80">
+      <!-- Result Item 1 -->
+      <div class="noticia bg-white p-4 rounded-lg shadow" data-titulo="Furacões mais frequentes são resultado direto de mudanças climáticas?">
+        <div class="flex items-center justify-between">
+          <i class="fas fa-heart text-gray-400 cursor-pointer" onclick="toggleSalvarNoticia(this, 'Furacões mais frequentes são resultado direto de mudanças climáticas?', 'Uma publicação está circulando afirmando que o aumento na frequência de furacões é resultado direto das mudanças climáticas. Este estudo, no entanto, mostra que há outros fatores em jogo.', 'https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg')"></i>
+        </div>
+        <div class="my-2">
+          <img alt="Imagem da notícia" class="w-full h-40 object-cover rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" width="300"/>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          <p class="titulo">Furacões mais frequentes são resultado direto de mudanças climáticas?</p>
+        </div>
+        <p class="text-gray-600 text-sm mt-2">
+          Uma publicação está circulando afirmando que o aumento na frequência de furacões é resultado direto das mudanças climáticas. Este estudo, no entanto, mostra que há outros fatores em jogo.
+        </p>
+      </div>
+      <!-- Result Item 2 -->
+      <div class="noticia bg-white p-4 rounded-lg shadow" data-titulo="Estudo revela aumento de fake news sobre desmatamento na Amazônia">
+        <div class="flex items-center justify-between">
+          <i class="fas fa-heart text-gray-400 cursor-pointer" onclick="toggleSalvarNoticia(this, 'Estudo revela aumento de fake news sobre desmatamento na Amazônia', 'Um novo estudo revelou que o volume de notícias falsas sobre o desmatamento na Amazônia cresceu significativamente nos últimos anos, o que tem gerado preocupações entre ambientalistas.', 'https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg')"></i>
+        </div>
+        <div class="my-2">
+          <img alt="Imagem da notícia" class="w-full h-40 object-cover rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" width="300"/>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          <p class="titulo">Estudo revela aumento de fake news sobre desmatamento na Amazônia</p>
+        </div>
+        <p class="text-gray-600 text-sm mt-2">
+          Um novo estudo revelou que o volume de notícias falsas sobre o desmatamento na Amazônia cresceu significativamente nos últimos anos, o que tem gerado preocupações entre ambientalistas.
+        </p>
+      </div>
+      <!-- Result Item 3 -->
+      <div class="noticia bg-white p-4 rounded-lg shadow" data-titulo="Novo relatório expõe impacto da poluição nos oceanos">
+        <div class="flex items-center justify-between">
+          <i class="fas fa-heart text-gray-400 cursor-pointer" onclick="toggleSalvarNoticia(this, 'Novo relatório expõe impacto da poluição nos oceanos', 'O relatório destaca o aumento alarmante da poluição plástica nos oceanos e seus efeitos devastadores na vida marinha.', 'https://storage.googleapis.com/a1aa/image/ocean_pollution.jpg')"></i>
+        </div>
+        <div class="my-2">
+          <img alt="Imagem da notícia" class="w-full h-40 object-cover rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" width="300"/>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          <p class="titulo">Novo relatório expõe impacto da poluição nos oceanos</p>
+        </div>
+        <p class="text-gray-600 text-sm mt-2">
+          O relatório destaca o aumento alarmante da poluição plástica nos oceanos e seus efeitos devastadores na vida marinha.
+        </p>
+      </div>
+      <!-- Result Item 4 -->
+      <div class="noticia bg-white p-4 rounded-lg shadow" data-titulo="Estudo alerta para o risco de extinção de várias espécies de insetos">
+        <div class="flex items-center justify-between">
+          <i class="fas fa-heart text-gray-400 cursor-pointer" onclick="toggleSalvarNoticia(this, 'Estudo alerta para o risco de extinção de várias espécies de insetos', 'Um estudo recente sugere que várias espécies de insetos estão em risco devido à destruição de habitats naturais.', 'https://storage.googleapis.com/a1aa/image/insects_extinction.jpg')"></i>
+        </div>
+        <div class="my-2">
+          <img alt="Imagem da notícia" class="w-full h-40 object-cover rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" width="300"/>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          <p class="titulo">Estudo alerta para o risco de extinção de várias espécies de insetos</p>
+        </div>
+        <p class="text-gray-600 text-sm mt-2">
+          Um estudo recente sugere que várias espécies de insetos estão em risco devido à destruição de habitats naturais.
+        </p>
+      </div>
+      <!-- Result Item 5 -->
+      <div class="noticia bg-white p-4 rounded-lg shadow" data-titulo="Mudanças climáticas afetam produção de alimentos em larga escala">
+        <div class="flex items-center justify-between">
+          <i class="fas fa-heart text-gray-400 cursor-pointer" onclick="toggleSalvarNoticia(this, 'Mudanças climáticas afetam produção de alimentos em larga escala', 'Relatórios mostram que as mudanças climáticas estão causando uma diminuição significativa na produção agrícola em várias regiões do mundo.', 'https://storage.googleapis.com/a1aa/image/climate_change_food.jpg')"></i>
+        </div>
+        <div class="my-2">
+          <img alt="Imagem da notícia" class="w-full h-40 object-cover rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" width="300"/>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          <p class="titulo">Mudanças climáticas afetam produção de alimentos em larga escala</p>
+        </div>
+        <p class="text-gray-600 text-sm mt-2">
+          Relatórios mostram que as mudanças climáticas estão causando uma diminuição significativa na produção agrícola em várias regiões do mundo.
+        </p>
+      </div>
+      <!-- Result Item 6 -->
+      <div class="noticia bg-white p-4 rounded-lg shadow" data-titulo="Políticas ambientais atrasadas podem piorar a situação de desastres naturais">
+        <div class="flex items-center justify-between">
+          <i class="fas fa-heart text-gray-400 cursor-pointer" onclick="toggleSalvarNoticia(this, 'Políticas ambientais atrasadas podem piorar a situação de desastres naturais', 'Especialistas afirmam que atrasos na implementação de políticas ambientais podem agravar o impacto de desastres naturais no futuro.', 'https://storage.googleapis.com/a1aa/image/environment_policies.jpg')"></i>
+        </div>
+        <div class="my-2">
+          <img alt="Imagem da notícia" class="w-full h-40 object-cover rounded-lg" height="200" src="https://storage.googleapis.com/a1aa/image/V0KQ7xOlWZaeaa4jvGXatGYNl2jCzZo3XGhSj0vD6eBtWvpTA.jpg" width="300"/>
+        </div>
+        <div class="flex items-center text-gray-600 text-sm">
+          <i class="fas fa-map-marker-alt mr-2" ></i>
+          <p class="titulo">Políticas ambientais atrasadas podem piorar a situação de desastres naturais</p>
+        </div>
+        <p class="text-gray-600 text-sm mt-2">
+          Especialistas afirmam que atrasos na implementação de políticas ambientais podem agravar o impacto de desastres naturais no futuro.
+        </p>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="flex justify-around items-center bg-gray-800 text-white w-full h-16 rounded-b-lg">
+      <div class="flex flex-col items-center">
+        <a class="fas fa-bars text-xl" href="home.html"></a>
+        <p class="text-xs">Menu</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <a href="pagina_salvos.html" class="flex flex-col items-center">
+          <i class="fas fa-heart text-xl"></i>
+          <p class="text-xs">Salvos</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Função para fechar a página - redirecionamento para a página home
+    function fecharPagina() {
+      window.location.href = "home.html"; 
+    }
+
+    // Função para salvar ou remover notícias no localStorage e alterar a cor do coração
+    function toggleSalvarNoticia(element, titulo, descricao, imagem) {
+      let noticiasSalvas = JSON.parse(localStorage.getItem('noticiasSalvas')) || [];
+      const noticia = { titulo, descricao, imagem };
+      const index = noticiasSalvas.findIndex(n => n.titulo === titulo);
+
+      if (index === -1) {
+        // Adiciona a notícia ao localStorage
+        noticiasSalvas.push(noticia);
+        localStorage.setItem('noticiasSalvas', JSON.stringify(noticiasSalvas));
+        element.classList.remove('text-gray-400');
+        element.classList.add('text-red-500');
+      } else {
+        // Remove a notícia do localStorage
+        noticiasSalvas.splice(index, 1);
+        localStorage.setItem('noticiasSalvas', JSON.stringify(noticiasSalvas));
+        element.classList.remove('text-red-500');
+        element.classList.add('text-gray-400');
+      }
+    }
+
+    // Função para verificar quais notícias já estão salvas e mudar a cor do coração
+    function verificarNoticiasSalvas() {
+      const noticiasSalvas = JSON.parse(localStorage.getItem('noticiasSalvas')) || [];
+      const noticias = document.querySelectorAll('.noticia');
+
+      noticias.forEach(noticia => {
+        const titulo = noticia.getAttribute('data-titulo');
+        const isSaved = noticiasSalvas.some(n => n.titulo === titulo);
+        const heartIcon = noticia.querySelector('.fa-heart');
+
+        if (isSaved) {
+          heartIcon.classList.remove('text-gray-400');
+          heartIcon.classList.add('text-red-500');
+        }
+      });
+    }
+
+    // Função para filtrar as notícias com base no texto da pesquisa
+    function filtrarNoticias() {
+      const input = document.getElementById('search-input').value.toLowerCase();
+      const noticias = document.querySelectorAll('.noticia');
+      let totalResultados = 0;
+
+      noticias.forEach(noticia => {
+        const titulo = noticia.querySelector('.titulo').textContent.toLowerCase();
+
+        // Verifica se o título da notícia contém o termo de pesquisa
+        if (titulo.includes(input)) {
+          noticia.style.display = 'block'; // Mostra o item
+          totalResultados++;
+        } else {
+          noticia.style.display = 'none'; // Esconde o item
+        }
+      });
+
+      // Atualiza o contador de resultados
+      document.getElementById('results-count').textContent = `${totalResultados} resultados encontrados`;
+    }
+
+    // Verifica notícias salvas ao carregar a página
+    window.onload = verificarNoticiasSalvas;
+  </script>
+</body>
+</html>

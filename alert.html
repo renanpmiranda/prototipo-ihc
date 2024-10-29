@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal de Fontes Confiáveis e Compartilhamento</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <!-- Corpo principal -->
+  <div class="bg-white rounded-lg shadow-lg p-4 w-80">
+    <div class="flex justify-between items-center mb-4">
+      <a class="fas fa-user text-black" href="minha_conta.html"></a>
+      <i class="fas fa-times text-xl cursor-pointer" onclick="fecharPagina()"></i>
+    </div>
+    <h1 class="text-xl font-bold mb-4">Alerta!</h1>
+    <div class="flex justify-center mb-4">
+      <div class="bg-gray-300 rounded-lg p-8">
+        <img alt="Ícone de globo terrestre" class="w-16 h-16" src="https://storage.googleapis.com/a1aa/image/3ZvuOn9BvuoILZdqFbEzRY579L1Ozu9Up083EXMIb3aF2b6E.jpg" />
+      </div>
+    </div>
+    <p class="text-sm text-black mb-4">
+      Detectamos uma notícia que afirma que "os níveis de poluição no ar global estão diminuindo rapidamente". Essa informação é falsa. A poluição atmosférica continua sendo uma preocupação global, especialmente em áreas urbanas.
+    </p>
+    <p class="text-sm text-black mb-4">
+      Confira fontes confiáveis sobre o tema no nosso aplicativo e contribua compartilhando dados corretos.
+    </p>
+    <div class="flex justify-between">
+      <button class="flex items-center text-sm text-black" onclick="abrirModal()">
+        <i class="fas fa-map-marker-alt mr-2"></i>
+        Obter fontes
+      </button>
+      <button class="flex items-center text-sm text-black" onclick="compartilharNoticia()">
+        <i class="fas fa-share mr-2"></i>
+        Compartilhar
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal de Fontes Confiáveis -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold">Fontes Confiáveis</h2>
+        <button class="text-xl text-black" onclick="fecharModal()">&times;</button>
+      </div>
+      <ul class="list-disc pl-6">
+        <li><a href="https://www.who.int/" target="_blank" class="text-blue-500 hover:underline">Organização Mundial da Saúde (OMS)</a></li>
+        <li><a href="https://www.epa.gov/" target="_blank" class="text-blue-500 hover:underline">Agência de Proteção Ambiental (EPA)</a></li>
+        <li><a href="https://climate.nasa.gov/" target="_blank" class="text-blue-500 hover:underline">NASA - Climate Change</a></li>
+        <li><a href="https://www.iea.org/" target="_blank" class="text-blue-500 hover:underline">Agência Internacional de Energia (IEA)</a></li>
+      </ul>
+      <div class="flex justify-end mt-4">
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600" onclick="fecharModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function fecharPagina() {
+      window.location.href = "home.html"; // Redireciona para a página principal
+    }
+
+    function abrirModal() {
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function fecharModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function compartilharNoticia() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Notícia Falsa Sobre Poluição',
+          text: 'Detectamos uma notícia falsa sobre a redução dos níveis de poluição. A poluição atmosférica ainda é uma preocupação global. Confira fontes confiáveis.',
+          url: window.location.href,  // Pode ser um link para a notícia, ou URL do aplicativo
+        }).then(() => {
+          console.log('Compartilhamento realizado com sucesso!');
+        }).catch((error) => {
+          console.error('Erro ao compartilhar:', error);
+        });
+      } else {
+        alert('O recurso de compartilhamento não é suportado neste dispositivo ou navegador.');
+      }
+    }
+  </script>
+</body>
+</html>
